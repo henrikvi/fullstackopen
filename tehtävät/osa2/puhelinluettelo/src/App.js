@@ -9,56 +9,66 @@ const App = () => {
   ]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
+  const [ filter, setFilter ] = useState('')
 
-  // tässä lisätään newName tilassa oleva nimi persons-listalle kun submit tapahtuu
-  const addPerson = (event) => {
-    event.preventDefault()
-    if (persons.some(person => person.name === newName)) {
-      alert(`${newName} already exists in phonebook`)
-      setNewName('')
-      setNewNumber('')
-      return
-    }
-    setPersons(persons.concat({name: newName, number: newNumber}))
+  const resetInputs = () => {
     setNewName('')
     setNewNumber('')
   }
 
-  // tässä päivitetään kentän sisältö vastaamaan kirjoitettua
-  const handleNameChange = (event) => setNewName(event.target.value)
+  const addPerson = (event) => {
+    event.preventDefault()
 
-  const handleNumberChange = (event) => setNewNumber(event.target.value)
+    if (persons.some(person => person.name === newName)) {
+      alert(`${newName} already exists in phonebook`)
+      resetInputs()
+      return
+    }
+    setPersons(persons.concat({name: newName, number: newNumber}))
+    resetInputs()
+  }
+
+  const getUpdater = (updater) => (event) => updater(event.target.value)
 
   return (
     <div className = 'content'>
       <h2>Phonebook</h2>
-      <form onSubmit = {addPerson}>
-        <div>
-          name: <input value = {newName} onChange = {handleNameChange}/>
-          <br/>
-          number: <input value = {newNumber} onChange = {handleNumberChange}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <FilterForm filter = {filter} handleFilterChange = {getUpdater(setFilter)}/>
+      <PersonForm
+        addPerson = {addPerson}
+        newName = {newName}
+        handleNameChange = {getUpdater(setNewName)}
+        newNumber = {newNumber}
+        handleNumberChange = {getUpdater(setNewNumber)}
+      />
       <h2>Numbers</h2>
-      <List persons={persons} />
+      <List persons={persons} filter = {filter} />
     </div>
   )
 
 }
 
-const List = ({persons}) => {
-  const getPersons = () => persons.map(person => {
-    return <li key={person.name}>{person.name}: {person.number}</li>
-  })
+const FilterForm = ({filter, handleFilterChange}) => <p>Filter numbers: <input value = {filter} onChange = {handleFilterChange} /></p>
 
-  return (
-    <ul>
-      {getPersons()}
-    </ul>
+const PersonForm = (props) => {
+  return(
+    <form onSubmit = {props.addPerson}>
+        <h3>Add new:</h3>
+        name: <input value = {props.newName} onChange = {props.handleNameChange}/>
+        number: <input value = {props.newNumber} onChange = {props.handleNumberChange}/>
+        <br/>
+        <button type="submit">add</button>
+    </form>
   )
+}
+
+const List = ({persons, filter}) => {
+  
+  const getPersons = () => persons
+    .filter(person => person.name.toLowerCase().includes(filter.toLowerCase()))
+    .map(person => <li key={person.name}>{person.name}: {person.number}</li>)
+
+  return <ul>{getPersons()}</ul>
 }
 
 export default App

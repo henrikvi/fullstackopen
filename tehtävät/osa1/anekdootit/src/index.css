@@ -8,8 +8,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  color: rgb(80, 80, 80);
+h1, h2, h3 {
+  color: rgb(50, 50, 50);
 }
 
 .nav-list {
