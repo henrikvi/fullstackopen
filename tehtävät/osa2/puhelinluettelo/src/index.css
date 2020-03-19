@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    color: rgb(100, 100, 100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  color: rgb(80, 80, 80);
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%;
+  height: 46px;
+}
+
+.nav-element {
+  float: left;
+}
+
+.nav-element a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition-duration: 0.2s;
+}
+
+li a:hover {
+  background-color: lightgray;
+}
+
+.content {
+  padding: 20px;
+}
+
+input {
+  padding: .5em;
+  margin-right: 1em;
+  margin-top: 1em;
+  vertical-align: middle
+}
+
+button {
+  padding: .5em 1em;
+  margin-right: .5em;
+  margin-top: 1em;
+  border: none;
+  background-color: #e6e6e6;
+  text-decoration: none;
+  border-radius: 1px;
+  vertical-align: middle;
+  box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+button:hover{
+  background-color: #c2c2c2;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead, tbody {
+  vertical-align: middle;
+}
+
+tr:nth-child(odd) {
+  background-color: #e6e6e6;
+}
+
+td, th {
+  padding: 0.4em 2em 0.4em 0.6em;
+}
