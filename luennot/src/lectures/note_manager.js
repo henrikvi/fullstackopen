@@ -1,11 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Note from '../components/Note.js'
 import Button from '../components/Button.js'
+import axios from 'axios'
 
-const NoteManager = ({notes, setNotes}) => {
+const NoteManager = () => {
 
+  const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('A new note...')
   const [showAll, setShowAll] = useState(true)
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/notes')
+      .then(response => setNotes(response.data))
+  }, [])
 
   const notesToShow = showAll ?
     notes : notes.filter(note => note.important /*=== true*/)
