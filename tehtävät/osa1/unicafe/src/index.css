@@ -41,15 +41,22 @@ li a:hover {
   padding: 20px;
 }
 
+input {
+  padding: .5em;
+  margin-right: 1em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
 button {
   padding: .5em 1em;
   margin-right: .5em;
-  margin-top: 1em;
+  margin-top: .5em;
+  margin-bottom: .5em;
   border: none;
   background-color: #e6e6e6;
   text-decoration: none;
   border-radius: 1px;
-  vertical-align: middle;
   box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.3);
   cursor: pointer;
   transition-duration: 0.2s;
